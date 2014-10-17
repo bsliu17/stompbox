@@ -112,6 +112,14 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# CUDA related stuff
+export CUDA_HOME=/usr/local/cuda-6.5 
+export LD_LIBRARY_PATH=${CUDA_HOME}/lib64 
+PATH=${CUDA_HOME}/bin:${PATH} 
+export PATH 
+
+# My aliases
 alias fim="vim"
 alias gim="vim"
 alias cim="vim"
