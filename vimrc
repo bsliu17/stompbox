@@ -1,5 +1,5 @@
 " Turn off vi compatibility
-set nocompatible
+"set nocompatible
  
 filetype plugin indent on
 syntax on
@@ -56,8 +56,8 @@ set list
 " show spaces at the end of a line as '.', and hard tabs as » .
 set listchars=tab:»\ ,trail:.
 
-" set colorcolumn to 80 chars
-set colorcolumn=80
+" set colorcolumn to 120 chars
+set colorcolumn=120
 " set tabs to 2 spaces for c, c++, and rust
 " autocmd Filetype c,cpp,rust setlocal sw=2 ts=2 sts=2
 " for make and asm files, use hard 8 width tabs
@@ -74,3 +74,7 @@ colorscheme elflord
 
 " make searching highlight all results in a file 
 set hlsearch
+
+"navigate between tabs faster than typing \":tabnext"
+nnoremap tn :tabnext<CR>
+nnoremap tp :tabprev<CR>
