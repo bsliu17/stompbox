@@ -1,7 +1,7 @@
 127.0.0.1	localhost
 127.0.1.1	computer
 
-
+# Remap several sites to localhost, to avoid reflexively distracting myself
 127.0.1.1	www.reddit.com
 127.0.1.1	www.cnn.com
 127.0.1.1	www.huffingtonpost.com
