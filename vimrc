@@ -1,22 +1,18 @@
 " Turn off vi compatibility
 "set nocompatible
- 
+
+" Some Linux-kernel related stuff
 filetype plugin indent on
-syntax on
- 
+syn on se title
+set tabstop=8
+set shiftwidth=8
+set noexpandtab
+
 " In normal mode, I remap : to ; so I don't have to hold down shift to
 " enter a command like ':e' or ':sort'. Does not affect insert mode.
 noremap ; :
 noremap : ;
- 
-" Where to save .swp files.
-set directory=~/.vim/tmp
- 
-" Set all tab widths to 8, always convert tabs to spaces.
-"set sw=8 ts=8 sts=8
-"set expandtab
-"set smarttab
- 
+
 " I like line numbers.
 set nu
 
@@ -46,8 +42,10 @@ set wildmenu
 " buffer interaction
 set lazyredraw
 set mouse=a
+
 " Keep a 5 line buffer between the cursor and the top and bottom of the window
 set scrolloff=5
+
 " Highlight the line the cursor is on
 set cursorline
  
@@ -56,21 +54,11 @@ set list
 " show spaces at the end of a line as '.', and hard tabs as » .
 set listchars=tab:»\ ,trail:.
 
-" set colorcolumn to 120 chars
-set colorcolumn=120
-" set tabs to 2 spaces for c, c++, and rust
-" autocmd Filetype c,cpp,rust setlocal sw=2 ts=2 sts=2
-" for make and asm files, use hard 8 width tabs
-" autocmd Filetype asm,make setlocal sw=8 ts=8 sts=8 noexpandtab
- 
-" commands
-"command! W w " make :W the same as :w because I always mess that up
+" set colorcolumn to 80 chars
+set colorcolumn=80
 
 " Use elflord scheme for C and CPP files
-"autocmd Filetype c,cpp colorscheme elflord
-
-"Make elflord the default colorscheme
-colorscheme elflord
+autocmd Filetype c,cpp colorscheme elflord
 
 " make searching highlight all results in a file 
 set hlsearch
