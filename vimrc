@@ -1,6 +1,11 @@
 "" Some general configuration stuff
 " use :help to figure out what this stuff does
 
+" pathogen support
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
 " vim, not vi
 set nocompatible
 
