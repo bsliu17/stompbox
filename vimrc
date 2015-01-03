@@ -1,68 +1,59 @@
-" Turn off vi compatibility
-"set nocompatible
+"" Some general configuration stuff
+" use :help to figure out what this stuff does
 
-" Some Linux-kernel related stuff
-filetype plugin indent on
-syn on se title
-set tabstop=8
-set shiftwidth=8
-set noexpandtab
+" vim, not vi
+set nocompatible
 
-" In normal mode, I remap : to ; so I don't have to hold down shift to
-" enter a command like ':e' or ':sort'. Does not affect insert mode.
+" detect filetypes
+filetype on
+
+" In normal mode, I swap : with ; and vice versa
+" to save keystrokes
 noremap ; :
 noremap : ;
 
-" I like line numbers.
+" line numbers 
 set nu
 
-" This adds some useful line and column info to the status bar.
+" status bar stuff
 set ruler
- 
-" Options to modify searching.
-set wrapscan
-set ignorecase
-set smartcase " search is case insensitive unless the search term contains a
-" capital letter.
-set hlsearch " highlight everything that matches the search term.
-set incsearch " incremental search, start matching immediately.
-"set magic " always match the search term as regex.
- 
-" Always display the status bar.
-set laststatus=2
 set showcmd
 set showmode
- 
-" Useful menu for tab completeing commands, filenames, in the status br.
-" Enter ':e ~/' in normal mode, then hit tab for an example.
+set laststatus=2
+
+" performance optimizations
+set lazyredraw
+set ttyfast
+
+" searching options
+set ignorecase
+set smartcase
+set wrapscan
+set hlsearch
+set incsearch
+
+" remap tp and tn for tab switching
+nnoremap tn :tabnext<CR>
+nnoremap tp :tabprev<CR>
+
+" 5 lines between top/bottom before scrolling
+set scrolloff=5
+
+" Show hidden characters, like EOL and whitespace
+set list
+set listchars=tab:»\ ,trail:.
+
+" tab completion stuff
 set wildmode=longest,full
 set wildignore=*.o,*~,*.pyc,*.d
 set wildmenu
- 
-" buffer interaction
-set lazyredraw
-set mouse=a
 
-" Keep a 5 line buffer between the cursor and the top and bottom of the window
-set scrolloff=5
-
-" Highlight the line the cursor is on
-set cursorline
- 
-" hidden character display
-set list
-" show spaces at the end of a line as '.', and hard tabs as » .
-set listchars=tab:»\ ,trail:.
-
-" set colorcolumn to 80 chars
-set colorcolumn=80
-
-" Use elflord scheme for C and CPP files
+"" C/CPP specific configs
+autocmd Filetype c,cpp set tabstop=8
+autocmd Filetype c,cpp set shiftwidth=8
+autocmd Filetype c,cpp set noexpandtab 
 autocmd Filetype c,cpp colorscheme elflord
 
-" make searching highlight all results in a file 
-set hlsearch
-
-"navigate between tabs faster than typing \":tabnext"
-nnoremap tn :tabnext<CR>
-nnoremap tp :tabprev<CR>
+"" Javascript specific configs, specifically for node.js
+autocmd Filetype javascript set tabstop=2
+autocmd Filetype javascript set colorcolumn=80
