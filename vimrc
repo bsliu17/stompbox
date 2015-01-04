@@ -60,5 +60,12 @@ autocmd Filetype c,cpp set noexpandtab
 autocmd Filetype c,cpp colorscheme elflord
 
 "" Javascript specific configs, specifically for node.js
+autocmd Filetype javascript set autoindent
+autocmd Filetype javascript set copyindent
+autocmd Filetype javascript set smartindent
+
 autocmd Filetype javascript set tabstop=2
-autocmd Filetype javascript set colorcolumn=80
+autocmd Filetype javascript set shiftwidth=2
+autocmd Filetype javascript set softtabstop=2
+autocmd Filetype javascript set expandtab
+autocmd Filetype javascript set textwidth=80
