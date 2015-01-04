@@ -46,7 +46,7 @@ set scrolloff=5
 
 " Show hidden characters, like EOL and whitespace
 set list
-set listchars=tab:»\ ,trail:.
+set listchars=trail:.
 
 " tab completion stuff
 set wildmode=longest,full
@@ -56,7 +56,7 @@ set wildmenu
 "" C/CPP specific configs
 autocmd Filetype c,cpp set tabstop=8
 autocmd Filetype c,cpp set shiftwidth=8
-autocmd Filetype c,cpp set noexpandtab 
+autocmd Filetype c,cpp set noexpandtab
 autocmd Filetype c,cpp colorscheme elflord
 
 "" Javascript specific configs, specifically for node.js
