@@ -53,7 +53,10 @@ set wildmode=longest,full
 set wildignore=*.o,*~,*.pyc,*.d
 set wildmenu
 
-"" Limit 80 chars 
+" allows backspacing beyond insert point, indents, and line breaks
+set backspace=indent,eol,start
+
+"" Limit to 80 chars
 set colorcolumn=80
 
 "" C/CPP specific configs
@@ -61,6 +64,7 @@ autocmd Filetype c,cpp set tabstop=8
 autocmd Filetype c,cpp set shiftwidth=8
 autocmd Filetype c,cpp set noexpandtab
 autocmd Filetype c,cpp colorscheme elflord
+autocmd Filetype c,cpp set listchars=tab:»\ ,trail:.
 
 "" Javascript specific configs, specifically for node.js
 autocmd Filetype javascript set autoindent
