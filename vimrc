@@ -53,6 +53,9 @@ set wildmode=longest,full
 set wildignore=*.o,*~,*.pyc,*.d
 set wildmenu
 
+"" Limit 80 chars 
+set colorcolumn=80
+
 "" C/CPP specific configs
 autocmd Filetype c,cpp set tabstop=8
 autocmd Filetype c,cpp set shiftwidth=8
