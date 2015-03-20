@@ -59,6 +59,12 @@ set backspace=indent,eol,start
 "" Limit to 80 chars
 set colorcolumn=80
 
+"" Python specific configs
+autocmd Filetype python set tabstop=8
+autocmd Filetype python set expandtab
+autocmd Filetype python set shiftwidth=4
+autocmd Filetype python set softtabstop=4
+
 "" C/CPP specific configs
 autocmd Filetype c,cpp set tabstop=8
 autocmd Filetype c,cpp set shiftwidth=8
