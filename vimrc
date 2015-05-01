@@ -12,6 +12,12 @@ set nocompatible
 " detect filetypes
 filetype on
 
+" Display stuff - show hidden chars, set colors, and
+" show hidden characters, like EOL and whitespace
+set list
+colorscheme elflord
+set listchars=tab:»\ ,trail:.
+
 " In normal mode, I swap : with ; and vice versa
 " to save keystrokes
 noremap ; :
@@ -44,10 +50,6 @@ nnoremap tp :tabprev<CR>
 " 5 lines between top/bottom before scrolling
 set scrolloff=5
 
-" Show hidden characters, like EOL and whitespace
-set list
-set listchars=trail:.
-
 " tab completion stuff
 set wildmode=longest,full
 set wildignore=*.o,*~,*.pyc,*.d
@@ -69,16 +71,14 @@ autocmd Filetype python set softtabstop=4
 autocmd Filetype c,cpp set tabstop=8
 autocmd Filetype c,cpp set shiftwidth=8
 autocmd Filetype c,cpp set noexpandtab
-autocmd Filetype c,cpp colorscheme elflord
-autocmd Filetype c,cpp set listchars=tab:»\ ,trail:.
 
-"" Javascript specific configs, specifically for node.js
-autocmd Filetype javascript set autoindent
-autocmd Filetype javascript set copyindent
-autocmd Filetype javascript set smartindent
+"" Web specific configs, specifically for node.js
+autocmd Filetype javascript,html,css set autoindent
+autocmd Filetype javascript,html,css set copyindent
+autocmd Filetype javascript,html,css set smartindent
 
-autocmd Filetype javascript set tabstop=2
-autocmd Filetype javascript set shiftwidth=2
-autocmd Filetype javascript set softtabstop=2
-autocmd Filetype javascript set expandtab
-autocmd Filetype javascript set textwidth=80
+autocmd Filetype javascript,html,css set tabstop=2
+autocmd Filetype javascript,html,css set shiftwidth=2
+autocmd Filetype javascript,html,css set softtabstop=2
+autocmd Filetype javascript,html,css set expandtab
+autocmd Filetype javascript,html,css set textwidth=80
