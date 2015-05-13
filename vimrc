@@ -17,7 +17,7 @@ filetype on
 noremap ; :
 noremap : ;
 
-" line numbers 
+" line numbers
 set nu
 
 " status bar stuff
@@ -78,12 +78,12 @@ autocmd Filetype c,cpp set shiftwidth=8
 autocmd Filetype c,cpp set noexpandtab
 
 "" Javascript specific configs, specifically for node.js
-autocmd Filetype javascript set autoindent
-autocmd Filetype javascript set copyindent
-autocmd Filetype javascript set smartindent
+autocmd Filetype html,css,javascript set autoindent
+autocmd Filetype html,css,javascript set copyindent
+autocmd Filetype html,css,javascript set smartindent
 
-autocmd Filetype javascript set tabstop=2
-autocmd Filetype javascript set shiftwidth=2
-autocmd Filetype javascript set softtabstop=2
-autocmd Filetype javascript set expandtab
-autocmd Filetype javascript set textwidth=80
+autocmd Filetype html,css,javascript set tabstop=2
+autocmd Filetype html,css,javascript set shiftwidth=2
+autocmd Filetype html,css,javascript set softtabstop=2
+autocmd Filetype html,css,javascript set expandtab
+autocmd Filetype html,css,javascript set textwidth=80
