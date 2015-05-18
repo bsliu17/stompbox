@@ -1,6 +1,12 @@
 #!/bin/bash
 # My personal setup script to be run on fresh Linux installs using aptitude
-# must be run with sudo on a system supporting ~ for /home/username/
+# This script must be run with sudo on a system supporting ~ for /home/username/
+# and from /home/<username>/configs!
+
+if [ $(whoami) != 'root' ]
+  then
+    echo 'This script requires root access to run.'; exit 1
+fi
 
 # Aptitude: install stuff I use
 apt-get update
@@ -11,12 +17,20 @@ apt-get autoremove
 # NPM: install stuff I use
 npm install jshint
 
-# Move my config files to the appropriate places
-cp vimrc ~/.vimrc
-cp -r vim ~/.vim
-cp jshintrc ~/.jshintrc
-cp hosts /etc/hosts
-cp bashrc ~/.bashrc
+# Make soft links to rc files.
+cd
+rm .bashrc .vimrc .jshintrc
+rm .vim -rf
+ln -T ~/configs/bashrc .bashrc -s
+ln -T ~/configs/vimrc .vimrc -s
+ln -T ~/configs/vim .vim -s
+ln -T ~/configs/jshintrc .jshintrc -s
+
+# Install LightTable
+wget https://d35ac8ww5dfjyg.cloudfront.net/playground/bins/0.7.2/LightTableLinux64.tar.gz
+tar -xvzf LightTableLinux64.tar.gz
+cd /usr/bin
+ln -T ~/LightTable/LightTable lighttable -s
 
 # FIXME: This is broken, my linux source doesn't update
 # Get Linux kernel source, then create a cron.daily job to ensure it gets
