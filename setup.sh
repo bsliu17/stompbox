@@ -14,6 +14,11 @@ apt-get upgrade
 apt-get install git tmux vim gcc clang vlc npm wireshark nmap ipython nodejs
 apt-get autoremove
 
+# Get correct version of PIP
+wget https://bootstrap.pypa.io/get-pip.py > ~/Downloads/get-pip.py
+chmod +x get-pip.py
+python ~/Dowloads/get-pip.py
+
 # NPM: install stuff I use
 npm install jshint
 
