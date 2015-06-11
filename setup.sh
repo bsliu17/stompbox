@@ -11,7 +11,7 @@ fi
 # Aptitude: install stuff I use
 apt-get update
 apt-get upgrade
-apt-get install git tmux vim gcc clang vlc npm wireshark nmap ipython nodejs
+apt-get install git tmux vim gcc clang vlc npm wireshark nmap ipython nodejs docker.io
 apt-get autoremove
 
 # Get correct version of PIP
@@ -22,6 +22,16 @@ python ~/Dowloads/get-pip.py
 # NPM: install stuff I use
 npm install jshint
 
+# Install docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+# Install LightTable
+wget https://d35ac8ww5dfjyg.cloudfront.net/playground/bins/0.7.2/LightTableLinux64.tar.gz
+tar -xvzf LightTableLinux64.tar.gz
+cd /usr/bin
+ln -T ~/LightTable/LightTable lighttable -s
+
 # Make soft links to rc files.
 cd
 rm .bashrc .vimrc .jshintrc
@@ -30,21 +40,3 @@ ln -T ~/configs/bashrc .bashrc -s
 ln -T ~/configs/vimrc .vimrc -s
 ln -T ~/configs/vim .vim -s
 ln -T ~/configs/jshintrc .jshintrc -s
-
-# Install LightTable
-wget https://d35ac8ww5dfjyg.cloudfront.net/playground/bins/0.7.2/LightTableLinux64.tar.gz
-tar -xvzf LightTableLinux64.tar.gz
-cd /usr/bin
-ln -T ~/LightTable/LightTable lighttable -s
-
-# FIXME: This is broken, my linux source doesn't update
-# Get Linux kernel source, then create a cron.daily job to ensure it gets
-# rebased hourly
-#cd ~
-#git clone http://github.com/torvalds/linux.git
-#touch /etc/cron.daily/linux-update.sh
-#chmod 777 /etc/cron.daily/linux-update.sh
-#cat "#!/bin/bash" > /etc/cron.daily/linux-update.sh
-#cat "cd ~/linux" >> /etc/cron.daily/linux-update.sh
-#cat "git fetch" >> /etc/cron.daily/linux-update.sh
-#cat "git rebase origin/master" >> /etc/cron.daily/linux-update.sh
