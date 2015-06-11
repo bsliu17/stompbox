@@ -134,6 +134,7 @@ alias vlc="vlc -I ncurses --novideo --browse-dir ~/Music/"
 alias lock="gnome-screensaver-command -l"
 alias Go="make clean && make"
 alias upstream="git fetch; git submodule sync; git submodule update --init --recursive; git rebase origin/master"
+alias irc="irssi -c weber.freenode.net -n cl0pen"
 
 # Torch stuff
 export PATH=/home/jsgoller/torch/install/bin:$PATH  # Added automatically by torch-dist
