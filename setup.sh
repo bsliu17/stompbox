@@ -11,7 +11,7 @@ fi
 # Aptitude: install stuff I use
 apt-get update
 apt-get upgrade
-apt-get install git tmux vim gcc clang vlc npm wireshark nmap ipython nodejs docker.io
+apt-get install git tmux vim gcc clang vlc npm wireshark nmap ipython nodejs irssi
 apt-get autoremove
 
 # Get correct version of PIP
@@ -19,12 +19,11 @@ wget https://bootstrap.pypa.io/get-pip.py > ~/Downloads/get-pip.py
 chmod +x get-pip.py
 python ~/Dowloads/get-pip.py
 
-# NPM: install stuff I use
-npm install jshint
+# PIP: Install stuff I use
+sudo pip install -U docker-compose
 
-# Install docker-compose
-curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+# NPM: Install stuff I use
+npm install jshint
 
 # Install LightTable
 wget https://d35ac8ww5dfjyg.cloudfront.net/playground/bins/0.7.2/LightTableLinux64.tar.gz
@@ -40,3 +39,4 @@ ln -T ~/configs/bashrc .bashrc -s
 ln -T ~/configs/vimrc .vimrc -s
 ln -T ~/configs/vim .vim -s
 ln -T ~/configs/jshintrc .jshintrc -s
+ln -T ~/configs/bash_logout .bash_logout -s
