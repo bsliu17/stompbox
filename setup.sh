@@ -20,7 +20,7 @@ chmod +x get-pip.py
 python ~/Dowloads/get-pip.py
 
 # PIP: Install stuff I use
-sudo pip install -U docker-compose
+sudo pip install -U docker-compose pep8
 
 # NPM: Install stuff I use
 npm install jshint
