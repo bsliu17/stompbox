@@ -11,7 +11,7 @@ fi
 # Aptitude: install stuff I use
 apt-get update
 apt-get upgrade
-apt-get install git tmux vim gcc clang vlc npm wireshark nmap ipython nodejs irssi
+apt-get install git tmux vim dsniff hping3 gcc clang vlc npm wireshark nmap ipython nodejs irssi
 apt-get autoremove
 
 # Get correct version of PIP
