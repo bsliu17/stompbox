@@ -8,10 +8,13 @@ if [ $(whoami) != 'root' ]
     echo 'This script requires root access to run.'; exit 1
 fi
 
-# Aptitude: install stuff I use
+# Aptitude: install developer stuff I use
 apt-get update
 apt-get upgrade
-apt-get install git tmux vim dsniff hping3 gcc clang vlc npm wireshark nmap ipython nodejs irssi
+apt-get install git tmux vim gcc clang vlc npm ipython nodejs irssi
+
+# Aptitude: install security stuff I use
+apt-get install dsniff hping3 nmap wireshark kismet
 apt-get autoremove
 
 # Get correct version of PIP
