@@ -14,7 +14,7 @@ apt-get upgrade
 apt-get install git tmux vim gcc clang vlc npm ipython nodejs irssi
 
 # Aptitude: install security stuff I use
-apt-get install dsniff hping3 nmap wireshark kismet netcat rkhunter arpspoof
+apt-get install dsniff hping3 nmap wireshark kismet netcat rkhunter arpspoof chkrootkit
 apt-get autoremove
 
 # Get correct version of PIP
