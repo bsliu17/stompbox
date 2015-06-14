@@ -116,27 +116,7 @@ fi
 # Set vim to be the git editor
 export GIT_EDITOR=vim
 
-# CUDA related stuff
-export CUDA_HOME=/usr/local/cuda-6.5 
-export LD_LIBRARY_PATH=${CUDA_HOME}/lib64 
-PATH=${CUDA_HOME}/bin:${PATH} 
-export PATH 
-
-# Chromium tools
-export PATH=$PATH:/home/jsgoller/Code/depot_tools
-
 # My aliases
-alias fim="vim"
-alias gim="vim"
-alias cim="vim"
-alias bim="vim"
-alias vlc="vlc -I ncurses --novideo --browse-dir ~/Music/"
-alias lock="gnome-screensaver-command -l"
-alias Go="make clean && make"
 alias upstream="git fetch; git submodule sync; git submodule update --init --recursive; git rebase origin/master"
 alias irc="irssi -c weber.freenode.net -n cl0pen"
 
-# Torch stuff
-export PATH=/home/jsgoller/torch/install/bin:$PATH  # Added automatically by torch-dist
-export LD_LIBRARY_PATH=/home/jsgoller/torch/install/lib:$LD_LIBRARY_PATH  # Added automatically by torch-dist
-export DYLD_LIBRARY_PATH=/home/jsgoller/torch/install/lib:$DYLD_LIBRARY_PATH  # Added automatically by torch-dist
