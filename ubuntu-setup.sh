@@ -11,7 +11,7 @@ fi
 # Aptitude: install developer stuff I use
 apt-get update
 apt-get upgrade
-apt-get install git tmux vim gcc clang vlc npm ipython nodejs irssi
+apt-get install git tmux vim gcc clang vlc npm ipython nodejs irssi cppcheck
 
 # Aptitude: install security stuff I use
 apt-get install dsniff hping3 nmap wireshark kismet netcat rkhunter arpspoof chkrootkit
