@@ -23,7 +23,7 @@ chmod +x get-pip.py
 python ~/Dowloads/get-pip.py
 
 # PIP: Install stuff I use
-sudo pip install -U docker-compose pep8
+pip install -U docker-compose pep8
 
 # NPM: Install stuff I use
 npm install jshint
@@ -33,6 +33,10 @@ wget https://d35ac8ww5dfjyg.cloudfront.net/playground/bins/0.7.2/LightTableLinux
 tar -xvzf LightTableLinux64.tar.gz
 cd /usr/bin
 ln -T ~/LightTable/LightTable lighttable -s
+
+# Install vivisect
+cd
+git clone https://github.com/vivisect/vivisect.git
 
 # Make soft links to rc files.
 cd
