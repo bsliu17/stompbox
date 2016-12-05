@@ -1,3 +1,0 @@
-[submodule "jshint2.vim"]
-	path = vim/bundle/jshint2.vim
-	url = https://github.com/Shutnik/jshint2.vim
