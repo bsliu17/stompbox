@@ -16,5 +16,5 @@ apt-get autoremove
 mkdir ~/Downloads
 wget https://bootstrap.pypa.io/get-pip.py > ~/Downloads/get-pip.py
 chmod +x get-pip.py
-python ~/Dowloads/get-pip.py
+python ~/Downloads/get-pip.py
 
