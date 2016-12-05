@@ -6,7 +6,7 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
-  config.vm.box = "hashicorp/precise64"
+  config.vm.box = "ubuntu/xenial64"
 
   # Sync'd folder; make sure /home/username/code or C:\...\Documents\GitHub exists
     config.vm.synced_folder "..", "/home/vagrant/GitHub"
