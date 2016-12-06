@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
 
   # Sync'd folder; make sure /home/username/code or C:\...\Documents\GitHub exists
-    config.vm.synced_folder "..", "/home/vagrant/GitHub"
+    config.vm.synced_folder "..", "/home/ubuntu/GitHub"
 
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the

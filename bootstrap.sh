@@ -3,7 +3,7 @@
 # This script must be run with sudo on a system supporting ~ for /home/username/
 # and from /home/<username>/configs!
 
-DEV_TOOLS="git tmux vim gcc clang ipython cppcheck make unzip"
+DEV_TOOLS="git tmux vim gcc clang ipython cppcheck make unzip virtualenv"
 SECURITY_TOOLS="hping3 nmap"
 
 # Aptitude: install developer stuff I use
