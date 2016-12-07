@@ -119,4 +119,3 @@ export GIT_EDITOR=vim
 # My aliases
 alias upstream="git fetch; git submodule sync; git submodule update --init --recursive; git rebase origin/master"
 alias irc="irssi -c weber.freenode.net -n cl0pen"
-

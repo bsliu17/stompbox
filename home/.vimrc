@@ -23,7 +23,7 @@ set listchars=tab:»\ ,trail:.
 noremap ; :
 noremap : ;
 
-" line numbers 
+" line numbers
 set nu
 
 " status bar stuff
