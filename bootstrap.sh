@@ -18,6 +18,7 @@ mv /tmp/terraform /usr/bin/terraform
 rm /tmp/terraform_0.7.13_linux_amd64.zip
 
 #TODO: Install Docker
+#TODO: Configure git user
 
 # Get correct version of PIP
 mkdir ~/Downloads
