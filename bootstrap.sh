@@ -11,23 +11,26 @@ DOCKER_REPO="deb https://apt.dockerproject.org/repo ubuntu-xenial main"
 DEV_TOOLS="git tmux vim gcc clang ipython cppcheck make unzip virtualenv docker-engine"
 SECURITY_TOOLS="hping3 nmap"
 
+# Debug output
+set -e
+
 # Set up config files in homedir
-ln -s -T $STOMPBOX_PATH/.vim /home/ubuntu/.vim
-ln -s -T $STOMPBOX_PATH/.vimrc /home/ubuntu/.vimrc
-ln -s -T $STOMPBOX_PATH/.gitconfig /home/ubuntu/.gitconfig
+ln -s -T $STOMPBOX_PATH/vim /home/ubuntu/.vim
+ln -s -T $STOMPBOX_PATH/vimrc /home/ubuntu/.vimrc
+ln -s -T $STOMPBOX_PATH/gitconfig /home/ubuntu/.gitconfig
 ln -s -T $CODEBASES_PATH/ /home/ubuntu/GitHub
 rm /home/ubuntu/.bashrc
-ln -s -T $STOMPBOX_PATH/.bashrc /home/ubuntu/.bashrc
-ln -s -T $STOMPBOX_PATH/.boto /home/ubuntu/.boto
+ln -s -T $STOMPBOX_PATH/bashrc /home/ubuntu/.bashrc
+ln -s -T $STOMPBOX_PATH/boto /home/ubuntu/.boto
 
 # Set up .ssh and .boto files
 if [ ! -d "/home/ubuntu/.ssh" ]; then
   mkdir /home/ubuntu/.ssh
 fi
 
-ln -s -T $SSH_PATH/github_rsa.pub /home/ubuntu/ssh/github_rsa.pub
-ln -s -T $SSH_PATH/github_rsa /home/ubuntu/ssh/github_rsa
-cat $SSH_PATH/config >> /home/ubuntu/ssh/config
+ln -s -T $STOMPBOX_SSH/github_rsa.pub /home/ubuntu/ssh/github_rsa.pub
+ln -s -T $STOMPBOX_SSH/github_rsa /home/ubuntu/ssh/github_rsa
+cat $STOMPBOX_SSH/config >> /home/ubuntu/ssh/config
 
 
 #Install Terraform
