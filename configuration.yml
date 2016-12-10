@@ -22,15 +22,6 @@
       - { dest: "/home/ubuntu/.boto", src: "{{stompbox_home}}/boto"}
       - { dest: "/home/ubuntu/.gitconfig", src: "{{stompbox_home}}/gitconfig"}
 
-  - name: Link github keys in /home/ubuntu/.ssh
-    file:
-      dest: "{{ item.dest }}" # where the link should go
-      src: "{{ item.src }}" # what's being linked to
-      state: link
-    with_items:
-      - { dest: "/home/ubuntu/.ssh/github_rsa.pub", src: "{{stompbox_ssh}}/github_rsa.pub"}
-      - { dest: "/home/ubuntu/.ssh/github_rsa", src: "{{stompbox_ssh}}/github_rsa"}
-
   - name: Add apt key for docker
     apt_key:
       keyserver: "hkp://ha.pool.sks-keyservers.net"
@@ -69,3 +60,12 @@
     service:
       name: docker
       state: started
+
+  - name: Check if /home/ubuntu/.ssh/id_rsa exists
+    stat:
+      path: /home/ubuntu/.ssh/id_rsa
+    register: ssh_key_exists
+
+  - name: Generate new SSH key for github
+    command: ssh-keygen -t rsa -b 4096 -C "jsgoller1@gmail.com" -q -N ""
+    when: ssh_key_exists.stat.exists == false
