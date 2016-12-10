@@ -2,3 +2,4 @@
 *_rsa
 *_rsa.pub
 *.log
+*.retry
