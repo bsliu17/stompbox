@@ -1,6 +1,6 @@
 .vagrant
 *_rsa
 *_rsa.pub
-boto
+
 *.log
 *.retry
