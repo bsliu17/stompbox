@@ -2,6 +2,7 @@
   gather_facts: true
   tasks:
 
+## Directories and linked files from sync folder
   - name: Create directories
     file:
       dest: "{{ item }}"
@@ -22,6 +23,7 @@
       - { dest: "/home/ubuntu/.boto", src: "{{stompbox_home}}/boto"}
       - { dest: "/home/ubuntu/.gitconfig", src: "{{stompbox_home}}/gitconfig"}
 
+## Install packages, including docker
   - name: Add apt key for docker
     apt_key:
       keyserver: "hkp://ha.pool.sks-keyservers.net"
@@ -40,6 +42,12 @@
     with_items:
       - "{{ apt_installs }}"
 
+  - name: Start Docker daemon
+    service:
+      name: docker
+      state: started
+
+## Install Terraform
   - name: Get Terraform zip
     get_url:
       url: https://releases.hashicorp.com/terraform/0.7.13/terraform_0.7.13_linux_amd64.zip
@@ -56,11 +64,7 @@
       path: /tmp/terraform_0.7.13_linux_amd64.zip
       state: absent
 
-  - name: Start Docker daemon
-    service:
-      name: docker
-      state: started
-
+## Set up git configuration
   - name: Check if /home/ubuntu/.ssh/id_rsa exists
     stat:
       path: /home/ubuntu/.ssh/id_rsa
@@ -69,3 +73,6 @@
   - name: Generate new SSH key for github
     command: ssh-keygen -t rsa -b 4096 -C "jsgoller1@gmail.com" -q -N ""
     when: ssh_key_exists.stat.exists == false
+
+ - name: Ignore future changes to boto file (prevent accidental committing AWS creds)
+   command: git update-index --skip-worktree "{{stompbox_ssh}}/boto"
