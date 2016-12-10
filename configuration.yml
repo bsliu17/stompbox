@@ -15,55 +15,55 @@
       dest: "{{ item.dest }}" # where the link should go
       src: "{{ item.src }}" # what's being linked to
       state: link
-     with_items:
+    with_items:
       - { dest: "/home/ubuntu/GitHub", src: "{{codebases}}"}
       - { dest: "/home/ubuntu/.vim", src: "{{stompbox_home}}/vim"}
       - { dest: "/home/ubuntu/.vimrc", src: "{{stompbox_home}}/vimrc"}
       - { dest: "/home/ubuntu/.boto", src: "{{stompbox_home}}/boto"}
       - { dest: "/home/ubuntu/.gitconfig", src: "{{stompbox_home}}/gitconfig"}
 
- - name: Link github keys in /home/ubuntu/.ssh
+  - name: Link github keys in /home/ubuntu/.ssh
     file:
       dest: "{{ item.dest }}" # where the link should go
       src: "{{ item.src }}" # what's being linked to
       state: link
-     with_items:
-      - { dest: "/home/ubuntu/.ssh/github_rsa.pub", src: "{{stompbox_ssh}}/github_rsa.pub "}
-      - { dest: "/home/ubuntu/.ssh/github_rsa", src: "{{stompbox_ssh}}/github_rsa "}
-
- - name: Get Terraform zip
-    get_url:
-      url: https://releases.hashicorp.com/terraform/0.7.13/terraform_0.7.13_linux_amd64.zip
-      dest: /tmp/terraform_0.7.13_linux_amd64.zip
-      mode: 0644
-
- - name: Untar Terraform to /usr/bin
-    unarchive:
-      src: /tmp/terraform_0.7.13_linux_amd64.zip
-      dest: /usr/local/bin
-
- - name: Clean up Terraform archive
-   file:
-     path: /tmp/terraform_0.7.13_linux_amd64.zip
-     state: absent
+    with_items:
+      - { dest: "/home/ubuntu/.ssh/github_rsa.pub", src: "{{stompbox_ssh}}/github_rsa.pub"}
+      - { dest: "/home/ubuntu/.ssh/github_rsa", src: "{{stompbox_ssh}}/github_rsa"}
 
   - name: Add apt key for docker
-    apt-key:
-      url: hkp://ha.pool.sks-keyservers.net:80 \
-      id: 58118E89F3A912897C070ADBF76221572C52609D
+    apt_key:
+      keyserver: "hkp://ha.pool.sks-keyservers.net"
+      id: "58118E89F3A912897C070ADBF76221572C52609D"
 
   - name: Add Docker repo to /etc/apt list
     apt_repository:
       repo: "{{ docker_repo }}"
       state: present
 
-  - name: Install packages with Aptitude
+  - name: Install packages with Aptitude (there's a lot of these, give it a second)
     apt:
       name: "{{ item }}"
       state: present
       update_cache: yes
     with_items:
       - "{{ apt_installs }}"
+
+  - name: Get Terraform zip
+    get_url:
+      url: https://releases.hashicorp.com/terraform/0.7.13/terraform_0.7.13_linux_amd64.zip
+      dest: /tmp/terraform_0.7.13_linux_amd64.zip
+      mode: 0644
+
+  - name: Untar Terraform to /usr/bin
+    unarchive:
+      src: /tmp/terraform_0.7.13_linux_amd64.zip
+      dest: /usr/local/bin
+
+  - name: Clean up Terraform archive
+    file:
+      path: /tmp/terraform_0.7.13_linux_amd64.zip
+      state: absent
 
   - name: Start Docker daemon
     service:
