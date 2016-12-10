@@ -15,60 +15,57 @@
       dest: "{{ item.dest }}" # where the link should go
       src: "{{ item.src }}" # what's being linked to
       state: link
+     with_items:
+      - { dest: "/home/ubuntu/GitHub", src: "{{codebases}}"}
+      - { dest: "/home/ubuntu/.vim", src: "{{stompbox_home}}/vim"}
+      - { dest: "/home/ubuntu/.vimrc", src: "{{stompbox_home}}/vimrc"}
+      - { dest: "/home/ubuntu/.boto", src: "{{stompbox_home}}/boto"}
+      - { dest: "/home/ubuntu/.gitconfig", src: "{{stompbox_home}}/gitconfig"}
+
+ - name: Link github keys in /home/ubuntu/.ssh
+    file:
+      dest: "{{ item.dest }}" # where the link should go
+      src: "{{ item.src }}" # what's being linked to
+      state: link
+     with_items:
+      - { dest: "/home/ubuntu/.ssh/github_rsa.pub", src: "{{stompbox_ssh}}/github_rsa.pub "}
+      - { dest: "/home/ubuntu/.ssh/github_rsa", src: "{{stompbox_ssh}}/github_rsa "}
+
+ - name: Get Terraform zip
+    get_url:
+      url: https://releases.hashicorp.com/terraform/0.7.13/terraform_0.7.13_linux_amd64.zip
+      dest: /tmp/terraform_0.7.13_linux_amd64.zip
+      mode: 0644
+
+ - name: Untar Terraform to /usr/bin
+    unarchive:
+      src: /tmp/terraform_0.7.13_linux_amd64.zip
+      dest: /usr/local/bin
+
+ - name: Clean up Terraform archive
+   file:
+     path: /tmp/terraform_0.7.13_linux_amd64.zip
+     state: absent
+
+  - name: Add apt key for docker
+    apt-key:
+      url: hkp://ha.pool.sks-keyservers.net:80 \
+      id: 58118E89F3A912897C070ADBF76221572C52609D
+
+  - name: Add Docker repo to /etc/apt list
+    apt_repository:
+      repo: "{{ docker_repo }}"
+      state: present
+
+  - name: Install packages with Aptitude
+    apt:
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
     with_items:
-      - { dest: '/home/ubuntu/.vim', src: "{{stompbox_home}}/vim"}
+      - "{{ apt_installs }}"
 
-  #ln -s -T $STOMPBOX_PATH/vim /home/ubuntu/.vim
-  #ln -s -T $STOMPBOX_PATH/vimrc /home/ubuntu/.vimrc
-  #ln -s -T $STOMPBOX_PATH/gitconfig /home/ubuntu/.gitconfig
-  #ln -s -T $CODEBASES_PATH/ /home/ubuntu/GitHub
-  #rm /home/ubuntu/.bashrc
-  #ln -s -T $STOMPBOX_PATH/bashrc /home/ubuntu/.bashrc
-  #ln -s -T $STOMPBOX_PATH/boto /home/ubuntu/.boto
-
-
-
-
-
-
- #- name: Link github keys in .ssh
-  #ln -s -T $STOMPBOX_SSH/github_rsa.pub /home/ubuntu/ssh/github_rsa.pub
-  #ln -s -T $STOMPBOX_SSH/github_rsa /home/ubuntu/ssh/github_rsa
-
- #- name: Add github config to ssh config
-  #cat $STOMPBOX_SSH/config >> /home/ubuntu/ssh/config
-
- #- name: Get Terraform zip
-  #wget https://releases.hashicorp.com/terraform/0.7.13/terraform_0.7.13_linux_amd64.zip -O /tmp/terraform_0.7.13_linux_amd64.zip
-
- #- name: Untar Terraform to /usr/bin
-  #unzip /tmp/terraform_0.7.13_linux_amd64.zip -d /tmp
-  #mv /tmp/terraform /usr/bin/terraform
-
-  #- name: Clean up Terraform binary
-  #rm /tmp/terraform_0.7.13_linux_amd64.zip
-
-
-  #- name: Add apt key for docker
-  # Docker pre-reqs
-  #sudo apt-key adv \
-  #               --keyserver hkp://ha.pool.sks-keyservers.net:80 \
-  #               --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-
-  #- name: Add Docker repo to /etc/apt list
-  #echo $DOCKER_REPO | sudo tee /etc/apt/sources.list.d/docker.list
-
-  #- name: Install packages with Aptitude
-  #apt-get update
-  #apt-get install -y $DEV_TOOLS $SECURITY_TOOLS
-  #apt-get autoremove
-
-  #- name: Download correct version of pip
-  # Get correct version of PIP
-  #mkdir ~/Downloads
-  #wget https://bootstrap.pypa.io/get-pip.py > ~/Downloads/get-pip.py
-  #chmod +x get-pip.py
-  #python ~/Downloads/get-pip.py
-
-  #- name: Start Docker daemon
-  #sudo service docker start
+  - name: Start Docker daemon
+    service:
+      name: docker
+      state: started
