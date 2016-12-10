@@ -11,8 +11,8 @@ Vagrant.configure("2") do |config|
   config.vm.network :private_network, ip: "192.168.6.66"
 
   # Sync'd folder; make sure /home/username/code or C:\...\Documents\GitHub exists
-  config.vm.synced_folder "ssh", "/stompbox/ssh"
   config.vm.synced_folder "..", "/stompbox/GitHub"
+
 
   # Set the name of the VM. See: http://stackoverflow.com/a/17864388/100134
   config.vm.define :stompbox do |stompbox|
@@ -25,8 +25,8 @@ Vagrant.configure("2") do |config|
     ansible.verbose = "v"
     ansible.sudo = true
     ansible.extra_vars = {
-      codebases_path: "/stompbox/GitHub",
-      stompbox_path: "/stompbox/GitHub/stompbox",
+      codebases: "/stompbox/GitHub",
+      stompbox: "/stompbox/GitHub/stompbox",
       stompbox_home: "/stompbox/GitHub/stompbox/home",
       stompbox_ssh: "/stompbox/GitHub/stompbox/ssh",
       docker_repo: "deb https://apt.dockerproject.org/repo ubuntu-xenial main",
@@ -42,6 +42,7 @@ Vagrant.configure("2") do |config|
         "unzip",
         "virtualenv",
         "docker-engine",
+        "python-pip",
         "hping3",
         "nmap"
       ]
