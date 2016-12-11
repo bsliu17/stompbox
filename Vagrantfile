@@ -6,13 +6,15 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
+
+  # Virtualbox
   config.vm.box = "ubuntu/xenial64"
+
   config.vm.hostname = "stompbox"
   config.vm.network :private_network, ip: "192.168.6.66"
 
   # Sync'd folder; make sure /home/username/code or C:\...\Documents\GitHub exists
   config.vm.synced_folder "..", "/stompbox/GitHub"
-
 
   # Set the name of the VM. See: http://stackoverflow.com/a/17864388/100134
   config.vm.define :stompbox do |stompbox|
@@ -48,6 +50,4 @@ Vagrant.configure("2") do |config|
       ]
     }
   end
-
-	#config.vm.provision :shell, path: "bootstrap.sh"
 end

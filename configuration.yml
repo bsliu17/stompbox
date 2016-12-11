@@ -48,6 +48,7 @@
       state: started
 
 ## Install Terraform
+## NOTE: See the README for known issues regarding running Terraform on Linux guest / Windows host
   - name: Get Terraform zip
     get_url:
       url: https://releases.hashicorp.com/terraform/0.7.13/terraform_0.7.13_linux_amd64.zip
@@ -71,8 +72,10 @@
     register: ssh_key_exists
 
   - name: Generate new SSH key for github
-    command: ssh-keygen -t rsa -b 4096 -C "jsgoller1@gmail.com" -q -N ""
+    command: ssh-keygen -t rsa -b 4096 -C "jsgoller1@gmail.com" -f /home/ubuntu/.ssh/id_rsa -q -N ""
     when: ssh_key_exists.stat.exists == false
 
- - name: Ignore future changes to boto file (prevent accidental committing AWS creds)
-   command: git update-index --skip-worktree "{{stompbox_ssh}}/boto"
+  - name: Ignore future changes to boto file (prevent accidental committing AWS creds)
+    command: git update-index --skip-worktree /stompbox/GitHub/stompbox/ssh/boto
+    args:
+      chdir: /stompbox/Github/stompbox
