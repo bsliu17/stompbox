@@ -9,7 +9,6 @@ Vagrant.configure("2") do |config|
 
   # Virtualbox
   config.vm.box = "ubuntu/xenial64"
-
   config.vm.hostname = "stompbox"
   config.vm.network :private_network, ip: "192.168.6.66"
 
