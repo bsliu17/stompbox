@@ -78,4 +78,4 @@
   - name: Ignore future changes to boto file (prevent accidental committing AWS creds)
     command: git update-index --skip-worktree /stompbox/GitHub/stompbox/ssh/boto
     args:
-      chdir: /stompbox/Github/stompbox
+      chdir: /stompbox/GitHub/stompbox
