@@ -76,6 +76,6 @@
     when: ssh_key_exists.stat.exists == false
 
   - name: Ignore future changes to boto file (prevent accidental committing AWS creds)
-    command: git update-index --skip-worktree /stompbox/GitHub/stompbox/ssh/boto
+    command: git update-index --skip-worktree /stompbox/GitHub/stompbox/home/boto
     args:
       chdir: /stompbox/GitHub/stompbox
