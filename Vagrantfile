@@ -12,8 +12,12 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "stompbox"
   config.vm.network :private_network, ip: "192.168.6.66"
 
-  # Sync'd folder; make sure /home/username/code or C:\...\Documents\GitHub exists
-  config.vm.synced_folder "..", "/stompbox/GitHub"
+  # Sync'd folder; make sure /home/username/GitHub and /home/username/stompbox exist
+  # and that this is run from the latter
+  config.vm.synced_folder "../GitHub", "/home/ubuntu/GitHub"
+  #config.vm.synced_folder "../.ssh", "/home/ubuntu/.ssh"
+  config.vm.synced_folder ".", "/vagrant" # required for provisioning
+
 
   # Set the name of the VM. See: http://stackoverflow.com/a/17864388/100134
   config.vm.define :stompbox do |stompbox|
@@ -26,10 +30,10 @@ Vagrant.configure("2") do |config|
     ansible.verbose = "v"
     ansible.sudo = true
     ansible.extra_vars = {
-      codebases: "/stompbox/GitHub",
-      stompbox: "/stompbox/GitHub/stompbox",
-      stompbox_home: "/stompbox/GitHub/stompbox/home",
-      stompbox_ssh: "/stompbox/GitHub/stompbox/ssh",
+      codebases: "/home/ubuntu/GitHub",
+      stompbox: "/vagrant",
+      stompbox_home: "/vagrant/home",
+      stompbox_ssh: "/vagrant/ssh",
       docker_repo: "deb https://apt.dockerproject.org/repo ubuntu-xenial main",
       apt_installs: [
         "awscli",

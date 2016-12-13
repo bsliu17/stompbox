@@ -9,6 +9,7 @@
       state: directory
     with_items:
       - /home/ubuntu/.ssh
+      - /home/ubuntu/.aws
       - /home/ubuntu/Downloads
 
   - name: Create softlinks to config files
@@ -17,11 +18,11 @@
       src: "{{ item.src }}" # what's being linked to
       state: link
     with_items:
-      - { dest: "/home/ubuntu/GitHub", src: "{{codebases}}"}
       - { dest: "/home/ubuntu/.vim", src: "{{stompbox_home}}/vim"}
       - { dest: "/home/ubuntu/.vimrc", src: "{{stompbox_home}}/vimrc"}
       - { dest: "/home/ubuntu/.boto", src: "{{stompbox_home}}/boto"}
       - { dest: "/home/ubuntu/.gitconfig", src: "{{stompbox_home}}/gitconfig"}
+      - { dest: "/home/ubuntu/.aws/config", src: "{{stompbox_home}}/boto"}
 
 ## Install packages, including docker
   - name: Add apt key for docker
@@ -76,6 +77,6 @@
     when: ssh_key_exists.stat.exists == false
 
   - name: Ignore future changes to boto file (prevent accidental committing AWS creds)
-    command: git update-index --skip-worktree /stompbox/GitHub/stompbox/home/boto
+    command: "git update-index --skip-worktree /{{ stompbox }}/home/boto"
     args:
-      chdir: /stompbox/GitHub/stompbox
+      chdir: "{{ stompbox }}"
