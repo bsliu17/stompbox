@@ -32,20 +32,22 @@ Vagrant.configure("2") do |config|
       stompbox_ssh: "/stompbox/GitHub/stompbox/ssh",
       docker_repo: "deb https://apt.dockerproject.org/repo ubuntu-xenial main",
       apt_installs: [
-        "git",
-        "tmux",
-        "vim",
-        "gcc",
+        "awscli",
         "clang",
-        "ipython",
         "cppcheck",
-        "make",
-        "unzip",
-        "virtualenv",
         "docker-engine",
-        "python-pip",
+        "gcc",
+        "git",
         "hping3",
-        "nmap"
+        "ipython",
+        "jq",
+        "make",
+        "nmap",
+        "python-pip",
+        "tmux",
+        "unzip",
+        "vim",
+        "virtualenv"
       ]
     }
   end
