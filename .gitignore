@@ -1,5 +1,9 @@
+# Auto generated files
 .vagrant
-*_rsa
-*_rsa.pub
 *.log
 *.retry
+
+# Secret files
+*_rsa
+*_rsa.pub
+credentials.rb
