@@ -7,15 +7,22 @@
 # you're doing.
 Vagrant.configure("2") do |config|
 
-  # Virtualbox
+  # Configure Virtualbox to use host's DNS provider and not 10.0.2.3
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  end
+
+  # Select box, hostname, and internal IP
   config.vm.box = "ubuntu/xenial64"
   config.vm.hostname = "stompbox"
   config.vm.network :private_network, ip: "192.168.6.66"
 
+  # Kubernetes UI port
+  config.vm.network "forwarded_port", guest: 8001, host: 8001
+
   # Sync'd folder; make sure /home/username/GitHub and /home/username/stompbox exist
   # and that this is run from the latter
   config.vm.synced_folder "../GitHub", "/home/ubuntu/GitHub"
-  #config.vm.synced_folder "../.ssh", "/home/ubuntu/.ssh"
   config.vm.synced_folder ".", "/vagrant" # required for provisioning
 
   # Set the name of the VM. See: http://stackoverflow.com/a/17864388/100134
