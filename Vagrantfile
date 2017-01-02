@@ -20,6 +20,14 @@ Vagrant.configure("2") do |config|
   # Kubernetes UI port
   config.vm.network "forwarded_port", guest: 8001, host: 8001
 
+  # Prometheus UI port
+  config.vm.network "forwarded_port", guest: 9090, host: 9090
+
+  # Generic utility ports
+  for i in 64000..64050
+      config.vm.network :forwarded_port, guest: i, host: i
+  end
+
   # Sync'd folder; make sure /home/username/GitHub and /home/username/stompbox exist
   # and that this is run from the latter
   config.vm.synced_folder "../GitHub", "/home/ubuntu/GitHub"
